@@ -1,1 +1,55 @@
-<p>task-list works!</p>
+<div class="container-fluid">
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="btn-group">
+                    <button class="btn btn-primary" (click)="setFilter('All')">All</button>
+                    <button class="btn btn-success" (click)="setFilter('Completed')">Completed</button>
+                    <button class="btn btn-warning" (click)="setFilter('Incomplete')">Incomplete</button>
+                </div>
+            </div>
+
+            <div class="col-md-6 d-flex justify-content-end">
+                <button class="btn btn-primary" type="button" (click)="openModal()">Add Task</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Completed</th>
+                    <th>Description</th>
+                    <th>Priority</th>
+                    <th>Creation Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let task of filteredTasks">
+                    <td>{{ task.id }}</td>
+                    <td>{{ task.title }}</td>
+                    <td>
+                        <div class="form-check form-check-inline custom-checkbox ">
+                            <input type="checkbox" [(ngModel)]="task.completed" (change)="markCompleted(task)" />
+                        </div>
+                    </td>
+                    <td>{{ task.description }}</td>
+                    <td>
+                        <span [ngClass]="{
+                            'badge badge-success': task.priority_name === 'low',
+                            'badge badge-warning': task.priority_name === 'medium',
+                            'badge badge-danger': task.priority_name === 'high'
+                          }">
+                        </span>
+                    </td>
+                    <td>{{ task.creation_date | date: 'dd/MM/yyyy' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

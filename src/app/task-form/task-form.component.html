@@ -1,1 +1,36 @@
-<p>task-form works!</p>
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Task Form</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <div class="container   p-3">
+        <form [formGroup]="taskForm">
+            <div class="form-group p-3">
+                <label for="title">Task Title</label>
+                <input id="title" class="form-control" type="text" formControlName="title"
+                    placeholder="Enter task title" />
+            </div>
+            <div class="form-group p-3">
+                <label for="description">Description</label>
+                <textarea id="description" class="form-control" formControlName="description" rows="3"></textarea>
+            </div>
+            <div class="form-group p-3">
+                <label for="priority_name">Priority</label>
+                <select id="priority_name" class="form-control" formControlName="priority_name">
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+            </div>
+            <div class="form-group p-3">
+                <label for="creation_date">Creation Date</label>
+                <input id="creation_date" class="form-control" type="date" formControlName="creation_date" />
+            </div>
+            <button class="btn btn-success" type="button" (click)="addTask()" [disabled]="taskForm.invalid">
+                Add Task
+            </button>
+        </form>
+    </div>
+</div>

@@ -39,11 +39,12 @@
                     </td>
                     <td>{{ task.description }}</td>
                     <td>
-                        <span [ngClass]="{
-                            'badge badge-success': task.priority_name === 'low',
-                            'badge badge-warning': task.priority_name === 'medium',
-                            'badge badge-danger': task.priority_name === 'high'
+                        <span class="badge" [ngClass]="{
+                            ' badge-success': task.priority_name === 'Low',
+                            ' badge-warning': task.priority_name === 'Medium',
+                            ' badge-danger': task.priority_name === 'High'
                           }">
+                            {{task.priority_name}}
                         </span>
                     </td>
                     <td>{{ task.creation_date | date: 'dd/MM/yyyy' }}</td>

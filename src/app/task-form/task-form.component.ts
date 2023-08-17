@@ -4,6 +4,7 @@ import { Task } from '../models/task.model';
 import { TaskService } from '../services/task.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Priority } from '../models/task.consts';
 
 @Component({
   selector: 'app-task-form',
@@ -26,7 +27,7 @@ export class TaskFormComponent implements OnInit {
     this.taskForm = this.formBuilder.group({
       title: ['', Validators.required],
       description: [''],
-      priority_name: ['low'],
+      priority_name: [Priority.LOW],
       creation_date: ['']
     });
   }
@@ -34,7 +35,7 @@ export class TaskFormComponent implements OnInit {
   addTask(): void {
     if (this.taskForm.valid) {
       const newTask: Task = {
-        id: 0, 
+        id: 0,
         title: this.taskForm.value.title,
         completed: false,
         description: this.taskForm.value.description,
